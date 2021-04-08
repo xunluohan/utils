@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>rem适配方案一</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<link rel="stylesheet" href="./index.css">
+	</head>
+	<body>
+		<div id="demo"></div>
+		<script type="text/javascript" >
+			//根字体 = (手机横向设备独立像素值 * 100 )  / 设计稿宽度
+
+			function adapter (){
+				//获取当前手机横向设备独立像素值
+				const dip = document.documentElement.clientWidth 
+				//计算根字体大小
+				const rootFontSize = (dip * 100)/375
+				//设置根字体大小
+				document.documentElement.style.fontSize = rootFontSize+'px'
+			}
+			adapter()
+			//监测布局视口改变，进行实时适配
+			window.onresize = adapter
+
+		</script>
+	</body>
+</html>

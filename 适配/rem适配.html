@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>rem适配方案一</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#demo{
+				width: 3.45rem;
+				height: 1.50rem;
+				background-color: #8FAADC;
+				margin: 0 auto;
+				margin-top: 0.15rem;
+				/* border:1px solid black; */ /* 边框不参与适配 */
+				/* border:0.01rem solid black; */ /* 边框参与适配 */
+			}
+		</style>
+	</head>
+	<body>
+		<div id="demo"></div>
+		<script type="text/javascript" >
+
+			function adapter (){
+				//获取当前手机横向设备独立像素值
+				const dip = document.documentElement.clientWidth 
+				//计算根字体大小
+				//根字体 = (手机横向设备独立像素值 * 100 )  / 设计稿宽度
+				const rootFontSize = (dip * 100)/375
+				//设置根字体大小
+				document.documentElement.style.fontSize = rootFontSize+'px'
+			}
+			adapter()
+			//监测布局视口改变，进行实时适配
+			window.onresize = adapter
+
+		</script>
+	</body>
+</html>
